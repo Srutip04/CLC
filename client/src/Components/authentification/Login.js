@@ -17,6 +17,8 @@ import {
   } from '@chakra-ui/react';
   import { useState } from 'react';
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+
+  
  
 
 const Login = () => {
@@ -24,7 +26,7 @@ const Login = () => {
 
 
   return (
-    <div>  <Flex
+    <Flex
     minH={'100vh'}
     align={'center'}
     justify={'center'}
@@ -95,7 +97,7 @@ const Login = () => {
         </Stack>
       </Box>
     </Stack>
-  </Flex></div>
+  </Flex>
   )
 }
 
