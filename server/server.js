@@ -18,7 +18,9 @@ app.use(cors({
   credentials: true
 }))
 
-mongoose.connect(process.env.DB_URL, {
+
+const url=process.env.DB_URL
+mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
  }, () => {
