@@ -3,6 +3,7 @@ import React from 'react'
 import { Box } from '@chakra-ui/react'
 import SignupCard from '../components/sign-up-form/sign-up-from';
 import '../App.css';
+import SimpleCard from '../components/sign-in-form/sign-in-from';
 
 
 
@@ -12,7 +13,7 @@ const Homepage = () => {
     <Container className='Home'>
       
       <Box >
-        <SignupCard />
+        <SignupCard/>
       </Box>
     </Container>
     

@@ -13,15 +13,18 @@ import {
   Heading,
   Text,
   useColorModeValue,
-  Link,
+  Link
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import SimpleCard from "../sign-in-form/sign-in-from";
+import {  useNavigate } from 'react-router-dom';
+
 
 
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate=useNavigate();
 
   return (
     <Flex
@@ -92,7 +95,7 @@ export default function SignupCard() {
             </Stack>
             <Stack pt={6}>
               <Text align={"center"}>
-                Already a user? <Link color={"blue.400"} to='/login'>Login</Link>
+                Already a user? <Link color={"blue.400"} onClick={()=>{navigate('/login')}}>Login</Link>
               </Text>
             </Stack>
           </Stack>
