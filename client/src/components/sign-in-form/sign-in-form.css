@@ -1,0 +1,6 @@
+.login{
+  min-height: 100vh;
+  background-image: url('../../assets/homepage.jpg');
+  background-size: cover;
+ background-position: center;
+}

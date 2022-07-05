@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Homepage from './Pages/Homepage'
+import Homepage from './pages/Homepage'
 import SimpleCard from './components/sign-in-form/sign-in-from';
 import { Route,Routes } from 'react-router-dom';
 
