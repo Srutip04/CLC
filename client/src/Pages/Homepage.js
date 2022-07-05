@@ -1,9 +1,8 @@
 import { Container} from '@chakra-ui/react'
 import React from 'react'
 import { Box } from '@chakra-ui/react'
-
-import Login from '../Components/authentification/Login'
-
+import SignupCard from '../components/sign-up-form/sign-up-from';
+import '../App.css';
 
 
 
@@ -13,8 +12,7 @@ const Homepage = () => {
     <Container className='Home'>
       
       <Box >
-      <Login/>
-
+        <SignupCard />
       </Box>
     </Container>
     
