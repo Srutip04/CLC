@@ -12,8 +12,16 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import './sign-in-form.css';
+import { useNavigate } from "react-router-dom";
+import "./sign-in-form.css";
+
+
 export default function SimpleCard() {
+  const navigate=useNavigate();
+
+
+
+
   return (
     <div className="login">
       <Flex
@@ -41,18 +49,29 @@ export default function SimpleCard() {
                 <FormLabel>Password</FormLabel>
                 <Input type="password" />
               </FormControl>
-              <Stack spacing={10}>
+              <Stack spacing={5}>
                 <Stack
                   direction={{ base: "column", sm: "row" }}
                   align={"start"}
                   justify={"space-between"}
                 ></Stack>
+                 <Button
+                  bg={"blue.400"}
+                  color={"white"}
+                  _hover={{
+                    bg: "blue.500",
+                  }}
+                  onClick={()=>{navigate('/login-ad')}}
+                >
+                 Login as admin
+                </Button>
                 <Button
                   bg={"blue.400"}
                   color={"white"}
                   _hover={{
                     bg: "blue.500",
                   }}
+                  
                 >
                   Sign in
                 </Button>

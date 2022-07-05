@@ -13,7 +13,7 @@ import {
   Heading,
   Text,
   useColorModeValue,
-  Link
+  Link,Select, useToast
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
@@ -24,7 +24,30 @@ import {  useNavigate } from 'react-router-dom';
 
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
+  const [firstname, setfirstname] = useState()
+  const [lastname, setlastname] = useState()
+  const [password, setpassword] = useState()
+  const [role, setrole] = useState()
+  const [email, setemail] = useState()
+  const toast = useToast();
   const navigate=useNavigate();
+  
+  
+  const submithandle=()=>{
+    if (!firstname || !lastname || !email || !password || !role) {
+      toast({
+        title: "Please Fill all the Fields",
+        status: "info",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      
+      return;
+    }
+    console.log(firstname+role)
+  
+  }
 
   return (
     <Flex
@@ -50,24 +73,32 @@ export default function SignupCard() {
               <Box>
                 <FormControl id="firstName" isRequired>
                   <FormLabel>First Name</FormLabel>
-                  <Input type="text" />
+                  <Input type="text" onChange={(e)=>{setfirstname(e.target.value) }}/>
                 </FormControl>
               </Box>
               <Box>
                 <FormControl id="lastName">
                   <FormLabel>Last Name</FormLabel>
-                  <Input type="text" />
+                  <Input type="text"  onChange={(e)=>{setlastname(e.target.value) }}/>
                 </FormControl>
               </Box>
             </HStack>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input type="email"  onChange={(e)=>{setemail(e.target.value) }}/>
+            </FormControl>
+            <FormControl id="designation" isRequired>
+            <FormLabel>Designation</FormLabel>
+            <Select placeholder='Select option' onChange={(e)=>{setrole(e.target.value) }}>
+                <option value='Teacher'>Teacher</option>
+                <option value='Student'>Student</option>
+               
+             </Select>
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                <Input type={showPassword ? "text" : "password"} />
+                <Input type={showPassword ? "text" : "password"}  onChange={(e)=>{setpassword(e.target.value) }}/>
                 <InputRightElement h={"full"}>
                   <Button
                     variant={"ghost"}
@@ -89,6 +120,7 @@ export default function SignupCard() {
                 _hover={{
                   bg: "blue.500",
                 }}
+                onClick={submithandle}
               >
                 Sign up
               </Button>

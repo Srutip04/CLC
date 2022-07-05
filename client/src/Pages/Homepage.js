@@ -3,7 +3,7 @@ import React from 'react'
 import { Box } from '@chakra-ui/react'
 import SignupCard from '../components/sign-up-form/sign-up-from';
 
-import SimpleCard from '../components/sign-in-form/sign-in-from';
+//import SimpleCard from '../components/sign-in-form/sign-in-from';
 
 
 
