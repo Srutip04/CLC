@@ -13,7 +13,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import "./sign-in-form.css";
+
 
 
 export default function SimpleCard() {

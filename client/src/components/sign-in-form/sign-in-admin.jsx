@@ -12,7 +12,7 @@ import {
     Text,
     useColorModeValue,
   } from "@chakra-ui/react";
-  import "./sign-in-form.css";
+
   
   
   export default function AdminCard() {

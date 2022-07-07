@@ -7,7 +7,7 @@ import SignupCard from '../components/sign-up-form/sign-up-from';
 
 
 
-const Homepage = () => {
+const Homepage1 = () => {
   
   return (
     <Container className='Home'>
@@ -20,4 +20,4 @@ const Homepage = () => {
   )
 }
 
-export default Homepage
+export default Homepage1
