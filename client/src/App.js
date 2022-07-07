@@ -6,6 +6,8 @@ import { Route,Routes } from 'react-router-dom';
 import AdminCard from './components/sign-in-form/sign-in-admin';
 import Homepage2 from './Pages/Homepage2';
 import Homepage3 from './Pages/Homepage3';
+import AdminPage from './Pages/AdminPage';
+import StudentPage from './Pages/StudentPage';
 
 
 function App() {
@@ -15,6 +17,8 @@ function App() {
       <Route exact path='/' element={<Homepage1/>}/>
       <Route exact path='/login' element={<Homepage2/>} />
       <Route exact path='/login-ad' element={<Homepage3/>} />
+      <Route exact path='/admin' element={<AdminPage/>} />
+      <Route exact path='/student' element={<StudentPage/>} />
 
     
     </Routes>
