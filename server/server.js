@@ -2,10 +2,14 @@ const express=require('express')
 
 const mongoose=require('mongoose')
 const dotenv = require("dotenv");
-const { notFound, errorHandler }=require("./middlewares/errorMiddleware");
+const { notFound, errorHandler }=require("./middlewares/errormiddlewares")
 const { resolve, join } =require( "path");
 const bodyParser = require("body-parser")
 const cors=require('cors')
+const registerRoutes=require('./routes/registerroute')
+const studentRoutes=require('./routes/studentroutes')
+const adminRoutes=require('./routes/adminroutes')
+dotenv.config()
 
 
 
@@ -28,6 +32,14 @@ mongoose.connect(url, {
  })
 
 const port= process.env.PORT || 5000
-const server=app.listen(port,()=>{
+app.listen(port,()=>{
     console.log('started at the port')
 })
+
+app.use("/api/register", registerRoutes); //only for registration part
+app.use("/api/admin", studentRoutes);//login and dashboard for students
+app.use("/api/student", adminRoutes);//login and dashboard for admins
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(notFound);
+app.use(errorHandler);

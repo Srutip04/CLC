@@ -19,6 +19,7 @@ import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import SimpleCard from "../sign-in-form/sign-in-from";
 import {  useNavigate } from 'react-router-dom';
+import axios from 'axios'
 
 
 
@@ -33,7 +34,7 @@ export default function SignupCard() {
   const navigate=useNavigate();
   
   
-  const submithandle=()=>{
+  const submithandle=async()=>{
     if (!firstname || !lastname || !email || !password || !role) {
       toast({
         title: "Please Fill all the Fields",
@@ -46,6 +47,49 @@ export default function SignupCard() {
       return;
     }
     console.log(firstname+role)
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+      const { data } = await axios.post("http://localhost:5000/api/register",
+        {
+          firstname,
+          lastname,
+          email,
+          password,
+          role,
+        },
+        config
+      );
+      console.log(data);
+      toast({
+        title: "Registration Successful",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      
+      localStorage.setItem("userInfo", JSON.stringify(data));
+    
+      if(role==='Teacher'){
+        navigate('/admin')
+      }else if(role==='Student'){
+        navigate('/student')
+      };
+    } catch (error) {
+      toast({
+        title: "Error Occured!",
+        description: error.response.data.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+     
+    }
   
   }
 

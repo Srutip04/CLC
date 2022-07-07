@@ -1,9 +1,9 @@
 const asyncHandler = require("express-async-handler");
 const jwt = require("jsonwebtoken");
-const Student = require("../model/studentmodel");
+const Admin= require("../model/adminmodel");
 
 
-const protectStudent =asyncHandler(async(req,res,next)=>{
+const protectAdmin =asyncHandler(async(req,res,next)=>{
     let token ;
     { 
         //console.log(req.user)
@@ -14,7 +14,7 @@ const protectStudent =asyncHandler(async(req,res,next)=>{
         try{
             token=req.headers.authorization.split(" ")[1];
             const decoded=jwt.verify(token,process.env.JWT_SECRET);
-            req.user=await Student.findById(decoded.id).select("-password")
+            req.user=await Admin.findById(decoded.id).select("-password")
             next();
         }catch(err){
             res.status(401);
@@ -27,4 +27,4 @@ const protectStudent =asyncHandler(async(req,res,next)=>{
       }
 });
 
-module.exports={protectStudent}
+module.exports={protectAdmin}
