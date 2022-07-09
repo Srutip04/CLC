@@ -31,9 +31,9 @@ mongoose.connect(url, {
    console.log('Database connected');
  })
 
-const port= process.env.PORT || 5000
-app.listen(port,()=>{
-    console.log('started at the port')
+const PORT= process.env.PORT || 5000
+app.listen(PORT,()=>{
+    console.log(`Server is running on port ${PORT}`)
 })
 
 app.use("/api/register", registerRoutes); //only for registration part
