@@ -1,9 +1,13 @@
+import axios from "axios";
+import React, { useContext, useState } from "react";
 import {
   Flex,
   Box,
   FormControl,
   FormLabel,
   Input,
+  InputGroup,
+  InputRightElement,
   Checkbox,
   Stack,
   Link,
@@ -11,16 +15,64 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
-
-
+import AuthContext from "../../context/AuthContext";
 
 export default function SimpleCard() {
-  const navigate=useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setpassword] = useState("");
+  const [Loading, setLoading] = useState();
+  const toast = useToast();
 
+  // const{getLoggedIn} = useContext(AuthContext);
+  const navigate = useNavigate();
 
-
+  const login = async () => {
+    setLoading(true);
+    if (!email || !password) {
+      toast({
+        title: "Please Fill all the Feilds",
+        status: "info",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+      return;
+    }
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+      const { data } = await axios.post(
+        "http://localhost:5000/api/student",
+        {
+          email,
+          password,
+        },
+        config
+      );
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      setLoading(false);
+      navigate("/student");
+    } catch (error) {
+      toast({
+        title: "Invalid Credentials",
+        description: error.response.data.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="login">
@@ -43,11 +95,33 @@ export default function SimpleCard() {
             <Stack spacing={4}>
               <FormControl id="email">
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" />
+                <Input
+                  type="email"
+                  placeholder="Email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                />
               </FormControl>
-              <FormControl id="password">
+              <FormControl id="password" isRequired>
                 <FormLabel>Password</FormLabel>
-                <Input type="password" />
+                <InputGroup>
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    onChange={(e) => {
+                      setpassword(e.target.value);
+                    }}
+                  />
+                  <InputRightElement h={"full"}>
+                    <Button
+                      variant={"ghost"}
+                      onClick={() =>
+                        setShowPassword((showPassword) => !showPassword)
+                      }
+                    >
+                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
               </FormControl>
               <Stack spacing={5}>
                 <Stack
@@ -55,15 +129,17 @@ export default function SimpleCard() {
                   align={"start"}
                   justify={"space-between"}
                 ></Stack>
-                 <Button
+                <Button
                   bg={"blue.400"}
                   color={"white"}
                   _hover={{
                     bg: "blue.500",
                   }}
-                  onClick={()=>{navigate('/login-ad')}}
+                  onClick={() => {
+                    navigate("/login-ad");
+                  }}
                 >
-                 Login as admin
+                  Login as admin
                 </Button>
                 <Button
                   bg={"blue.400"}
@@ -71,7 +147,8 @@ export default function SimpleCard() {
                   _hover={{
                     bg: "blue.500",
                   }}
-                  
+                  onClick={login}
+                  isLoading={Loading}
                 >
                   Sign in
                 </Button>
