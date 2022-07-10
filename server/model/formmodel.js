@@ -14,6 +14,6 @@ const formModel=mongo.Schema({
 
 );
 
-const Message=mongo.model("Message",messageModel)
+const Form=mongo.model("Form",formModel)
 
-module.exports=Message;
+module.exports=Form;

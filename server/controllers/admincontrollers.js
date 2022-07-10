@@ -1,6 +1,7 @@
 const asyncHandler=require('express-async-handler')
 const Admin=require('../model/adminmodel')
-const generateToken=require('../config/token')
+const generateToken=require('../config/token');
+const Form = require('../model/formmodel');
 
 
 const authAdmin = asyncHandler(async (req, res) => {
@@ -24,4 +25,19 @@ const authAdmin = asyncHandler(async (req, res) => {
   });
 
 
-  module.exports={authAdmin}
+const accessDashboard=asyncHandler(async(req,res)=>{
+  try{
+
+    const forms=await  Form.find().populate('sender','firstname lastname email')
+    console.log(forms.content)
+    res.json(forms)
+  }
+  catch(err){
+    console.log(error)
+    res.status(401);
+    throw new Error("Not able to fetch forms")
+  }
+})
+
+
+  module.exports={authAdmin,accessDashboard}
