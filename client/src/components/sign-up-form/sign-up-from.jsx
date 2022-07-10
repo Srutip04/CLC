@@ -28,6 +28,7 @@ export default function SignupCard() {
   const [firstname, setfirstname] = useState()
   const [lastname, setlastname] = useState()
   const [password, setpassword] = useState()
+  const [Loading, setLoading] = useState();
   const [confirmpassword, setconfirmpassword] = useState();
   const [role, setrole] = useState()
   const [email, setemail] = useState()
@@ -36,6 +37,7 @@ export default function SignupCard() {
   
   
   const submithandle=async()=>{
+    setLoading(true)
     if (!firstname || !lastname || !email || !password || !role) {
       toast({
         title: "Please Fill all the Fields",
@@ -44,11 +46,14 @@ export default function SignupCard() {
         isClosable: true,
         position: "bottom",
       });
-      
+      setTimeout(setLoading(false),4000) 
+     
+   
       return;
     }
     console.log(firstname+role)
     try {
+      setLoading(true)
       const config = {
         headers: {
           "Content-type": "application/json",
@@ -72,6 +77,7 @@ export default function SignupCard() {
         isClosable: true,
         position: "bottom",
       });
+      setLoading(false)
       
       localStorage.setItem("userInfo", JSON.stringify(data));
     
@@ -210,6 +216,7 @@ export default function SignupCard() {
                 _hover={{
                   bg: "blue.500",
                 }}
+                disabled={Loading}
                 onClick={submithandle}
               >
                 Sign up

@@ -35,13 +35,13 @@ export default function SimpleCard() {
     setLoading(true);
     if (!email || !password) {
       toast({
-        title: "Please Fill all the Feilds",
+        title: "Please Fill all the Fields",
         status: "info",
         duration: 5000,
         isClosable: true,
         position: "bottom",
       });
-      setLoading(false);
+      setTimeout(setLoading(false),4000) 
       return;
     }
     try {
@@ -144,6 +144,7 @@ export default function SimpleCard() {
                 <Button
                   bg={"blue.400"}
                   color={"white"}
+                  disabled={Loading}
                   _hover={{
                     bg: "blue.500",
                   }}
