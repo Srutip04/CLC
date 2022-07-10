@@ -1,4 +1,6 @@
-import { ReactNode } from "react";
+import React,{ useEffect,ReactNode,useState } from "react";
+import { AuthState } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Flex,
@@ -39,6 +41,14 @@ const NavLink = ({ children }: { children: ReactNode }) => (
 
 export default function Nav() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const navigate = useNavigate();
+
+  const {user} = AuthState();
+
+  const logoutHandler = () =>{
+    localStorage.removeItem('userInfo');
+    navigate('/');
+  }
 
   return (
     <>
@@ -74,6 +84,7 @@ export default function Nav() {
               _hover={{
                 bg: "pink.300",
               }}
+              onClick={logoutHandler}
             >
               Logout
             </Button>
