@@ -37,12 +37,9 @@ export default function SignupCard() {
   
   
   const submithandle=async()=>{
-<<<<<<< HEAD
-    if (!firstname || !lastname || !email || !password || !role || !confirmpassword) {
-=======
+   
     setLoading(true)
-    if (!firstname || !lastname || !email || !password || !role) {
->>>>>>> 9f5d6ca22f617d0a1cad7c320b7aa67a1ef68b00
+    if (!firstname || !lastname || !email || !password || !role || !confirmpassword) {
       toast({
         title: "Please Fill all the Fields",
         status: "info",
@@ -50,9 +47,18 @@ export default function SignupCard() {
         isClosable: true,
         position: "bottom",
       });
-      setTimeout(setLoading(false),4000) 
-     
-   
+      setTimeout(setLoading(false),4000) //set loading to false after 4 seconds
+      return;
+    }
+    if (password !== confirmpassword) {
+      toast({
+        title: "Password does not match",
+        status: "info",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setTimeout(setLoading(false),4000) //set loading to false after 4 seconds
       return;
     }
     console.log(firstname+role)
@@ -220,7 +226,7 @@ export default function SignupCard() {
                 _hover={{
                   bg: "blue.500",
                 }}
-                disabled={Loading}
+                isLoading={Loading}
                 onClick={submithandle}
               >
                 Sign up
