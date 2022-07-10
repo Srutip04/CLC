@@ -29,13 +29,13 @@ import { useNavigate } from "react-router-dom";
       setLoading(true);
       if ( !email || !password ) {
         toast({
-          title: "Please Fill all the Feilds",
+          title: "Please Fill all the Fields",
           status: "info",
           duration: 5000,
           isClosable: true,
           position: "bottom",
         });
-        setLoading(false);
+        setTimeout(setLoading(false),4000) 
         return;
       }
       
@@ -118,6 +118,7 @@ import { useNavigate } from "react-router-dom";
                     _hover={{
                       bg: "blue.500",
                     }}
+                    disabled={Loading}
                     onClick={submitHandler}
                     isLoading={Loading}
                   >
