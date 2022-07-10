@@ -1,5 +1,5 @@
 const express=require('express')
-const {authStudent}=require('../controllers/studentcontrollers')
+const {authStudent, sendForm}=require('../controllers/studentcontrollers')
 
 const { protectStudent } = require('../middlewares/authmiddleware');
 

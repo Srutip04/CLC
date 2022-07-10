@@ -10,6 +10,11 @@ const registerRoutes=require('./routes/registerroute')
 const studentRoutes=require('./routes/studentroutes')
 const adminRoutes=require('./routes/adminroutes')
 dotenv.config()
+const moment=require('moment')
+
+let d1=moment()
+console.log(typeof(d1));
+
 
 
 

@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const Student = require("../model/studentmodel");
 const generateToken = require("../config/token");
 const Form = require("../model/formmodel");
+const moment = require('moment');
 
 const authStudent = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -24,6 +25,7 @@ const authStudent = asyncHandler(async (req, res) => {
 
 const sendForm=asyncHandler(async(req,res)=>{
   const {email,date,branch,id,content}=req.body
+  
 
   const user=await Student.findOne({email});
   if(user){
@@ -32,10 +34,10 @@ const sendForm=asyncHandler(async(req,res)=>{
       branch:branch,
       id:id,
       content:content,
-      createdAt:{type:Date},
+      createdAt:date,
 
     })
   }
 })
 
-module.exports = { authStudent };
+module.exports = { authStudent ,sendForm};
