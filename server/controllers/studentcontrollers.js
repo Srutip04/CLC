@@ -25,6 +25,7 @@ const authStudent = asyncHandler(async (req, res) => {
 
 const sendForm=asyncHandler(async(req,res)=>{
   const {email,date,branch,id,content}=req.body
+  let v=moment(date)
   
 
   const user=await Student.findOne({email});
@@ -34,7 +35,7 @@ const sendForm=asyncHandler(async(req,res)=>{
       branch:branch,
       id:id,
       content:content,
-      createdAt:date,
+      createdAt:v,
 
     })
   }
