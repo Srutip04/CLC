@@ -17,16 +17,14 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
-
-  
-  
   export default function AdminCard() {
     const [password, setPassword] = useState()
     const [email, setemail] = useState()  
     const [Loading ,setLoading]=useState()
+    
     const toast = useToast();
-    const navigate=useNavigate();
+    const navigate = useNavigate();
+
     const submitHandler=async()=>{
       setLoading(true);
       if ( !email || !password ) {
