@@ -7,7 +7,7 @@ const router=express.Router()
 
 router.route('/').post(authStudent);
 //router.route('/').get(protectAdmin,accessDashboard);
-router.route('/').post(protectStudent,sendForm)
+router.route('/Dashboard').post(protectStudent,sendForm)
 
 
 

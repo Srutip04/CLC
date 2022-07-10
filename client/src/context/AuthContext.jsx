@@ -12,7 +12,13 @@ const AuthProvider = ({ children }) => {
     setUser(userInfo);
 
     if(!userInfo){
-      navigate('/')
+      
+
+      if(userInfo.role==='Teacher'){
+        navigate('/admin')
+      }else if(userInfo.role==='Student'){
+        navigate('/student')
+      };
     }
   }, [navigate]);
   return(

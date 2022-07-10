@@ -237,8 +237,13 @@ export default function SignupCard() {
                 Already a user?{" "}
                 <Link
                   color={"blue.400"}
-                  onClick={() => {
+                  onClick={() => {try{
+
                     navigate("/login");
+                    console.log('yipee')
+                  }catch(err){
+                    console.log(err)
+                  }
                   }}
                 >
                   Login
