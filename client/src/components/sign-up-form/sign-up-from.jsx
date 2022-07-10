@@ -28,6 +28,7 @@ export default function SignupCard() {
   const [firstname, setfirstname] = useState()
   const [lastname, setlastname] = useState()
   const [password, setpassword] = useState()
+  const [confirmpassword, setconfirmpassword] = useState();
   const [role, setrole] = useState()
   const [email, setemail] = useState()
   const toast = useToast();
@@ -117,32 +118,56 @@ export default function SignupCard() {
               <Box>
                 <FormControl id="firstName" isRequired>
                   <FormLabel>First Name</FormLabel>
-                  <Input type="text" onChange={(e)=>{setfirstname(e.target.value) }}/>
+                  <Input
+                    type="text"
+                    onChange={(e) => {
+                      setfirstname(e.target.value);
+                    }}
+                  />
                 </FormControl>
               </Box>
               <Box>
                 <FormControl id="lastName">
                   <FormLabel>Last Name</FormLabel>
-                  <Input type="text"  onChange={(e)=>{setlastname(e.target.value) }}/>
+                  <Input
+                    type="text"
+                    onChange={(e) => {
+                      setlastname(e.target.value);
+                    }}
+                  />
                 </FormControl>
               </Box>
             </HStack>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email"  onChange={(e)=>{setemail(e.target.value) }}/>
+              <Input
+                type="email"
+                onChange={(e) => {
+                  setemail(e.target.value);
+                }}
+              />
             </FormControl>
             <FormControl id="designation" isRequired>
-            <FormLabel>Designation</FormLabel>
-            <Select placeholder='Select option' onChange={(e)=>{setrole(e.target.value) }}>
-                <option value='Teacher'>Teacher</option>
-                <option value='Student'>Student</option>
-               
-             </Select>
+              <FormLabel>Designation</FormLabel>
+              <Select
+                placeholder="Select option"
+                onChange={(e) => {
+                  setrole(e.target.value);
+                }}
+              >
+                <option value="Teacher">Teacher</option>
+                <option value="Student">Student</option>
+              </Select>
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                <Input type={showPassword ? "text" : "password"}  onChange={(e)=>{setpassword(e.target.value) }}/>
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  onChange={(e) => {
+                    setpassword(e.target.value);
+                  }}
+                />
                 <InputRightElement h={"full"}>
                   <Button
                     variant={"ghost"}
@@ -155,6 +180,27 @@ export default function SignupCard() {
                 </InputRightElement>
               </InputGroup>
             </FormControl>
+            {/* <FormControl id="password" isRequired>
+              <FormLabel>Confirm Password</FormLabel>
+              <InputGroup>
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  onChange={(e) => {
+                    setconfirmpassword(e.target.value);
+                  }}
+                />
+                <InputRightElement h={"full"}>
+                  <Button
+                    variant={"ghost"}
+                    onClick={() =>
+                      setShowPassword((showPassword) => !showPassword)
+                    }
+                  >
+                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+            </FormControl> */}
             <Stack spacing={10} pt={2}>
               <Button
                 loadingText="Submitting"
@@ -171,7 +217,15 @@ export default function SignupCard() {
             </Stack>
             <Stack pt={6}>
               <Text align={"center"}>
-                Already a user? <Link color={"blue.400"} onClick={()=>{navigate('/login')}}>Login</Link>
+                Already a user?{" "}
+                <Link
+                  color={"blue.400"}
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                >
+                  Login
+                </Link>
               </Text>
             </Stack>
           </Stack>
