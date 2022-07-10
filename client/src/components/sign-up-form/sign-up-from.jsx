@@ -36,7 +36,7 @@ export default function SignupCard() {
   
   
   const submithandle=async()=>{
-    if (!firstname || !lastname || !email || !password || !role) {
+    if (!firstname || !lastname || !email || !password || !role || !confirmpassword) {
       toast({
         title: "Please Fill all the Fields",
         status: "info",
@@ -180,7 +180,7 @@ export default function SignupCard() {
                 </InputRightElement>
               </InputGroup>
             </FormControl>
-            {/* <FormControl id="password" isRequired>
+            <FormControl id="password" isRequired>
               <FormLabel>Confirm Password</FormLabel>
               <InputGroup>
                 <Input
@@ -200,7 +200,7 @@ export default function SignupCard() {
                   </Button>
                 </InputRightElement>
               </InputGroup>
-            </FormControl> */}
+            </FormControl>
             <Stack spacing={10} pt={2}>
               <Button
                 loadingText="Submitting"
