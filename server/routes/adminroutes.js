@@ -1,9 +1,11 @@
-const express=require('express')
+const express=require('express');
+const { authAdmin } = require('../controllers/admincontrollers');
 const { protectAdmin } = require('../middlewares/authadminmiddleware');
 
 const router=express.Router()
 
-//router.route('/').get(protectAdmin,accessDashboard);
+router.route('/').post(authAdmin)
+//router.route('/Dashboard').get(protectAdmin,accessDashboard);
 
 
 

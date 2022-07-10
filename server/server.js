@@ -37,8 +37,8 @@ app.listen(PORT,()=>{
 })
 
 app.use("/api/register", registerRoutes); //only for registration part
-app.use("/api/admin", studentRoutes);//login and dashboard for students
-app.use("/api/student", adminRoutes);//login and dashboard for admins
+app.use("/api/admin", adminRoutes);//login and dashboard for students
+app.use("/api/student", studentRoutes);//login and dashboard for admins
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(notFound);

@@ -11,11 +11,73 @@ import {
     Heading,
     Text,
     useColorModeValue,
+    useToast,
   } from "@chakra-ui/react";
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+
 
   
   
   export default function AdminCard() {
+    const [password, setPassword] = useState()
+    const [email, setemail] = useState()  
+    const [Loading ,setLoading]=useState()
+    const toast = useToast();
+    const navigate=useNavigate();
+    const submitHandler=async()=>{
+      setLoading(true);
+      if ( !email || !password ) {
+        toast({
+          title: "Please Fill all the Feilds",
+          status: "info",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+        setLoading(false);
+        return;
+      }
+      
+      console.log( email, password);
+      try {
+        const config = {
+          headers: {
+            "Content-type": "application/json",
+          },
+        };
+        const { data } = await axios.post(
+          "http://localhost:5000/api/admin",
+          {
+           
+            email,
+            password,
+          
+          },
+          config
+        );
+       
+        localStorage.setItem("userInfo", JSON.stringify(data));
+        setLoading(false);
+        navigate("/admin")
+      } catch (error) {
+        toast({
+          title: "Error Occured!",
+          description: error.response.data.message,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+        setLoading(false);
+      }
+  
+    }
+
+
+
     return (
       <div className="login">
         <Flex
@@ -37,11 +99,13 @@ import {
               <Stack spacing={4}>
                 <FormControl id="email">
                   <FormLabel>Email address</FormLabel>
-                  <Input type="email" />
+                  <Input type="email" value={email} placeholder="Enter your email"
+          onChange={(e)=> setemail(e.target.value)}/>
                 </FormControl>
                 <FormControl id="password">
                   <FormLabel>Password</FormLabel>
-                  <Input type="password" />
+                  <Input type="password" value={password}  placeholder="Enter your password"
+          onChange={(e)=> setPassword(e.target.value)}/>
                 </FormControl>
                 <Stack spacing={5}>
                   <Stack
@@ -56,6 +120,8 @@ import {
                     _hover={{
                       bg: "blue.500",
                     }}
+                    onClick={submitHandler}
+                    isLoading={Loading}
                   >
                     Sign in
                   </Button>
