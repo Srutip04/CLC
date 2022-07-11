@@ -17,6 +17,7 @@ import {
   Textarea,useToast
 } from "@chakra-ui/react";
 import axios from "axios";
+import { AuthState } from "../../context/AuthContext";
 
 const ApplicationForm = () =>{
 
@@ -24,6 +25,8 @@ const ApplicationForm = () =>{
     const[branch,setBranch] = useState();
     const[content,setContent] = useState();
     const [Loading, setLoading] = useState();
+    const {user}=AuthState()
+
 
     const toast = useToast();
 
@@ -44,7 +47,7 @@ const ApplicationForm = () =>{
       try {
         const config = {
           headers: {
-            "Content-type": "application/json",
+            Authorization: `Bearer ${user.token}`,
           },
         };
         const { data } = await axios.post(

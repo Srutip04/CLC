@@ -10,12 +10,14 @@ const authStudent = asyncHandler(async (req, res) => {
   const user = await Student.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
+    var tt=generateToken(user._id)
     res.json({
       _id: user._id,
       firstname: user.firstname,
       email: user.email,
-      token: generateToken(user._id),
+      token: tt,
     });
+    console.log(tt)
   } else {
     res.status(401);
     throw new Error("Invalid Email or Password");
@@ -38,6 +40,7 @@ const sendForm=asyncHandler(async(req,res)=>{
       createdAt:v,
 
     })
+    res.json()
   }
 })
 
