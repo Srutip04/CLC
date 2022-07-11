@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { AuthState } from './context/AuthContext';
 import Homepage1 from './Pages/Homepage1'
 import SimpleCard from './components/sign-in-form/sign-in-from';
 import { Route,Routes } from 'react-router-dom';
