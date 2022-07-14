@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Stack, Text, Button } from '@chakra-ui/react';
-import { FcLock } from 'react-icons/fc';
+import Moment from "react-moment";
+import { Stack, Text } from '@chakra-ui/react';
+import { Badge } from "@chakra-ui/react";
 
 import { AuthState } from "../../context/AuthContext";
 import axios from "axios";
 const Formtab = () => {
   const { user } = AuthState();
   const [forms, setForms] = useState([]);
+  
+ 
 
   const getForms = async () => {
     const sender = user._id;
@@ -34,10 +37,12 @@ const Formtab = () => {
     <Stack>
       {" "}
       {forms.map((form) => (
-        <Stack p="4" boxShadow="lg" m="4" borderRadius="sm">
+        <Stack p="4" boxShadow="lg" m="4" borderRadius="sm" key={user.id}>
           <Stack direction="row" alignItems="center">
-            <Text fontWeight="semibold">{form.date}</Text>
-            <FcLock />
+            <Text fontWeight="semibold">
+              {" "}
+              <Moment format="YYYY/MM/DD">{form.createdAt}</Moment>
+            </Text>
           </Stack>
 
           <Stack
@@ -45,13 +50,12 @@ const Formtab = () => {
             justifyContent="space-between"
           >
             <Text fontSize={{ base: "sm" }} textAlign={"left"} maxW={"4xl"}>
-             {form.content}
+              {form.content}
             </Text>
             <Stack direction={{ base: "column", md: "row" }}>
-              {/* <Button variant="outline" colorScheme="green">
-                Cookie Preferences
-              </Button>
-              <Button colorScheme="green">OK</Button> */}
+              <Badge variant="solid" colorScheme="green">
+                Success
+              </Badge>
             </Stack>
           </Stack>
         </Stack>
