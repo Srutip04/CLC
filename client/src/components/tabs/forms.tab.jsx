@@ -9,7 +9,7 @@ const Formtab = () => {
   const [forms, setForms] = useState([]);
 
   const getForms = async () => {
-    const sender = user.id;
+    const sender = user._id;
     try {
       const config = {
         headers: {
@@ -17,8 +17,8 @@ const Formtab = () => {
         },
       };
       const { data } = await axios
-        .get(`http://localhost:5000/api/student/Dashboard`, config)
-      
+        .get(`http://localhost:5000/api/student/Dashboard?sender=${sender}`, config)
+      console.log(user)
       console.log(data);
       setForms(data);
     } catch (error) {
@@ -27,8 +27,8 @@ const Formtab = () => {
   };
 
   useEffect(() =>{
-    getForms();
-  },[])
+     getForms();
+   },[])
 
   return (
     <Stack>
