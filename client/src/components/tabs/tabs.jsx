@@ -1,7 +1,7 @@
 import React from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import ApplicationForm from "./application.tab";
-import formtab from "./forms.tab";
+import Formtab from "./forms.tab";
 
 
 
@@ -18,7 +18,7 @@ const StudentTab = () => {
         <ApplicationForm/>
         </TabPanel>
         <TabPanel>
-      
+        <Formtab/>
         </TabPanel>
       </TabPanels>
     </Tabs>
