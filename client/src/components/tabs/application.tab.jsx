@@ -25,6 +25,7 @@ const ApplicationForm = () =>{
     const[branch,setBranch] = useState();
     const[content,setContent] = useState();
     const [Loading, setLoading] = useState();
+    const [date,setDate]=useState();
     const {user}=AuthState()
 
 
@@ -43,6 +44,7 @@ const ApplicationForm = () =>{
         });
         return;
       }
+      const email=user.email
 
       try {
         const config = {
@@ -53,13 +55,16 @@ const ApplicationForm = () =>{
         const { data } = await axios.post(
           "http://localhost:5000/api/student/Dashboard",
           {
+            email,
             id,
+            date,
             branch,
             content,
           },
           config
         );
         console.log(data);
+        
         toast({
           title: "Application Submitted",
           status: "success",
@@ -117,6 +122,15 @@ const ApplicationForm = () =>{
                   type="text"
                   onChange={(e) => {
                     setBranch(e.target.value);
+                  }}
+                />
+              </FormControl>
+              <FormControl id="date" isRequired>
+                <FormLabel>Date</FormLabel>
+                <Input
+                  type="date"
+                  onChange={(e) => {
+                    setDate(e.target.value);
                   }}
                 />
               </FormControl>

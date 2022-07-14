@@ -1,6 +1,9 @@
 import React from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import ApplicationForm from "./application.tab";
+import formtab from "./forms.tab";
+
+
 
 const StudentTab = () => {
 
@@ -15,7 +18,7 @@ const StudentTab = () => {
         <ApplicationForm/>
         </TabPanel>
         <TabPanel>
-          <p>two!</p>
+      
         </TabPanel>
       </TabPanels>
     </Tabs>
