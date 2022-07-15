@@ -57,7 +57,7 @@ const getForm=asyncHandler(async(req,res)=>{
   try{
     const { sender } = req.query
     const forms=await  Form.find({sender}).populate('sender','firstname lastname email')
-    console.log(forms.content)
+    //console.log(forms.content)
     res.json(forms)
   }
   catch(err){

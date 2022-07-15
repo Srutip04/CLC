@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
-import { Stack, Text } from '@chakra-ui/react';
+import { VStack,Stack, Text } from '@chakra-ui/react';
 import { Badge } from "@chakra-ui/react";
 
 //import { AuthState } from "../../context/AuthContext";
 import axios from "axios";
-const Formtab = ({user}) => {
+const Formtab = () => {
+  const user=JSON.parse(localStorage.getItem("userInfo"))
 
   const [forms, setForms] = useState([]);
   
  
 
   const getForms = async () => {
-    console.log(user)
+    //console.log(user)
+    const sender=user._id
     
-    const sender=user._id;
+   
 
     
     try {
@@ -25,8 +27,8 @@ const Formtab = ({user}) => {
       };
       const { data } = await axios
         .get(`/api/student/Dashboard?sender=${sender}`, config)
-      console.log(user)
-      console.log(data);
+      //console.log(user)
+      //console.log(data);
       setForms(data);
     } catch (error) {
       console.log(error);
@@ -38,13 +40,13 @@ const Formtab = ({user}) => {
 
     getForms();
     
-   },[])
+   })
 
   return (
-    <Stack>
+    <VStack>
       {" "}
       {forms.map((form) => (
-        <Stack p="4" boxShadow="lg" m="4" borderRadius="sm" key={user.id}>
+        <Stack p="4" boxShadow="lg" m="4" borderRadius="sm" key={user.id} bg={'white'}>
           <Stack direction="row" alignItems="center">
             <Text fontWeight="semibold">
               {" "}
@@ -67,7 +69,7 @@ const Formtab = ({user}) => {
           </Stack>
         </Stack>
       ))}
-    </Stack>
+    </VStack>
   );
 };
 
