@@ -39,13 +39,20 @@ const Formtab = ({user}) => {
     getForms();
     
    },[])
-
+  // var i =0;
   return (
     <Stack>
       {" "}
       {forms.map((form) => (
-        <Stack p="4" boxShadow="lg" m="4" borderRadius="sm" key={user.id}>
-          <Stack direction="row" alignItems="center">
+        <Stack
+          p="4"
+          bg="#fff"
+          boxShadow="lg"
+          m="4"
+          borderRadius="sm"
+          key={user.id}
+        >
+          <Stack direction="row" bg="#fff" alignItems="center">
             <Text fontWeight="semibold">
               {" "}
               <Moment format="YYYY/MM/DD">{form.createdAt}</Moment>
@@ -55,6 +62,7 @@ const Formtab = ({user}) => {
           <Stack
             direction={{ base: "column", md: "row" }}
             justifyContent="space-between"
+            bg="#fff"
           >
             <Text fontSize={{ base: "sm" }} textAlign={"left"} maxW={"4xl"}>
               {form.content}
