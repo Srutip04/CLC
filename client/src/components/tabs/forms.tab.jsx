@@ -3,16 +3,20 @@ import Moment from "react-moment";
 import { Stack, Text } from '@chakra-ui/react';
 import { Badge } from "@chakra-ui/react";
 
-import { AuthState } from "../../context/AuthContext";
+//import { AuthState } from "../../context/AuthContext";
 import axios from "axios";
-const Formtab = () => {
-  const { user } = AuthState();
+const Formtab = ({user}) => {
+
   const [forms, setForms] = useState([]);
   
  
 
   const getForms = async () => {
-    const sender = user._id;
+    console.log(user)
+    
+    const sender=user._id;
+
+    
     try {
       const config = {
         headers: {
@@ -20,7 +24,7 @@ const Formtab = () => {
         },
       };
       const { data } = await axios
-        .get(`http://localhost:5000/api/student/Dashboard?sender=${sender}`, config)
+        .get(`/api/student/Dashboard?sender=${sender}`, config)
       console.log(user)
       console.log(data);
       setForms(data);
@@ -30,7 +34,10 @@ const Formtab = () => {
   };
 
   useEffect(() =>{
-     getForms();
+    
+
+    getForms();
+    
    },[])
 
   return (

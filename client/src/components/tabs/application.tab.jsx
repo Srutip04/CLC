@@ -19,14 +19,14 @@ import {
 import axios from "axios";
 import { AuthState } from "../../context/AuthContext";
 
-const ApplicationForm = () =>{
+const ApplicationForm = ({user}) =>{
 
     const[id,setId] = useState();
     const[branch,setBranch] = useState();
     const[content,setContent] = useState();
     const [Loading, setLoading] = useState();
     const [date,setDate]=useState();
-    const {user}=AuthState()
+    //const {user}=AuthState()
 
 
     const toast = useToast();
@@ -53,7 +53,7 @@ const ApplicationForm = () =>{
           },
         };
         const { data } = await axios.post(
-          "http://localhost:5000/api/student/Dashboard",
+          "/api/student/Dashboard",
           {
             email,
             id,

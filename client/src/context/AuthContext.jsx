@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
         navigate('/student')
       };
     }
-  }, [navigate]);
+  },[navigate]);
   return(
     <AuthContext.Provider value={{user,setUser}} > 
       {children} 

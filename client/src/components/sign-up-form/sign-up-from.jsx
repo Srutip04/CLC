@@ -69,7 +69,7 @@ export default function SignupCard() {
           "Content-type": "application/json",
         },
       };
-      const { data } = await axios.post("http://localhost:5000/api/register",
+      const { data } = await axios.post("/api/register",
         {
           firstname,
           lastname,

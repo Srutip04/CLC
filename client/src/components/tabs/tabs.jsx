@@ -2,10 +2,14 @@ import React from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import ApplicationForm from "./application.tab";
 import Formtab from "./forms.tab";
+import { AuthState } from "../../context/AuthContext";
+
 
 
 
 const StudentTab = () => {
+  const { user } = AuthState();
+  console.log(user)
 
   return (
     <Tabs isFitted variant="enclosed">
@@ -15,10 +19,10 @@ const StudentTab = () => {
       </TabList>
       <TabPanels>
         <TabPanel>
-        <ApplicationForm/>
+        <ApplicationForm user={user}/>
         </TabPanel>
         <TabPanel>
-        <Formtab/>
+        <Formtab user={user}/>
         </TabPanel>
       </TabPanels>
     </Tabs>

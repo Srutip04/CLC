@@ -47,7 +47,7 @@ import { useNavigate } from "react-router-dom";
           },
         };
         const { data } = await axios.post(
-          "http://localhost:5000/api/admin",
+          "/api/admin",
           {
            
             email,
