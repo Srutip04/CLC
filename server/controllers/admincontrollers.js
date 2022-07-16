@@ -59,7 +59,9 @@ const accessDashboard=asyncHandler(async(req,res)=>{
 const decline=asyncHandler(async(req,res)=>{
   try{
     const {sender,createdAt,id}=req.body
-    const send=await Student.find({sender})
+    console.log(sender)
+    const send=await Student.find({_id:sender._id})
+    console.log(send.email)
     res.json("deleted succesfully")
     let mailOptions={
       from:"collegeportal123@gmail.com",
@@ -84,8 +86,9 @@ const decline=asyncHandler(async(req,res)=>{
 
 const accept=asyncHandler(async(req,res)=>{
   try{
-    const {sender,createdAt,id}=req.body
-    const send=await Student.find({sender})
+    const {sender,createdAt , id}=req.body
+    const send=await Student.find({_id:sender._id})
+    console.log(send.email)
     let mailOptions={
       from:"collegeportal123@gmail.com",
       to:send.email,

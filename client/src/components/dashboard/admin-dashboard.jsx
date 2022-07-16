@@ -65,7 +65,18 @@ const decline = async(form) =>{
 
   }
 
-  const accept = () =>{
+  const accept = async(form) =>{
+    const sender=form.sender
+    const {createdAt,id}=form
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+      const { data } = await axios.post(`/api/admin/Dashboard/form-accept`,{sender,createdAt,id}, config);
+      //console.log(user)
+      console.log(data);
     toast({
       title: "Request Accepted",
       status: "success",
@@ -73,7 +84,11 @@ const decline = async(form) =>{
       isClosable: true,
       position: "bottom",
     });
+  }catch (error) {
+    console.log(error);
   }
+
+}
 
 
   return (
@@ -109,10 +124,10 @@ const decline = async(form) =>{
               {form.content}
             </Text>
             <Stack direction={{ base: "column", md: "row" }}>
-              <Button colorScheme="teal" variant="solid" onClick={decline(form)}>
+              <Button colorScheme="teal" variant="solid" onClick={()=>{decline(form)}}>
                 Decline
               </Button>
-              <Button colorScheme="teal" variant="outline" onClick={accept}>
+              <Button colorScheme="teal" variant="outline" onClick={()=>{accept(form)}}>
                 Accept
               </Button>
             </Stack>
