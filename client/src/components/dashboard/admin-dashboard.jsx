@@ -1,61 +1,69 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { AuthState } from "../../context/AuthContext";
 import Moment from "react-moment";
-import { StackDivider, VStack,Stack, Text ,Button} from '@chakra-ui/react';
+import {
+  StackDivider,
+  VStack,
+  Stack,
+  Text,
+  Button,
+  useToast,
+} from "@chakra-ui/react";
 import axios from "axios";
 
-
-
 const AdminDashboard = () => {
-    const {user}=AuthState();
-    const [forms,setForms]=useState([]);
-    const getDash = async () => {
-        
-        
-        //console.log(user)
-        try {
-          const config = {
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-            },
-          };
-          const { data } = await axios
-            .get(`/api/admin/Dashboard`, config)
-          //console.log(user)
-          //console.log(data);
-          setForms(data);
-        } catch (error) {
-          console.log(error);
-        }
+  const { user } = AuthState();
+  const [forms, setForms] = useState([]);
+  const toast = useToast();
+
+  const getDash = async () => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
       };
+      const { data } = await axios.get(`/api/admin/Dashboard`, config);
+      //console.log(user)
+      //console.log(data);
+      setForms(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    // const decline=async()=>{
-    //     try {
-    //         const sender=
-    //         const config = {
-    //           headers: {
-    //             Authorization: `Bearer ${user.token}`,
-    //           },
-    //         };
-    //         const { data } = await axios
-    //           .post(`/api/admin/Dashboard/form-decline`, {},config)
-           
-    //         setDta(data);
-    //       } 
+  useEffect(() => {
+    getDash();
+  }, [getDash]);
 
-    // }
-    
-      useEffect(() =>{
-        
-    
-        getDash();
-        
-       },[getDash])
-    return (
-        <VStack divider={<StackDivider borderColor='gray.200' />}
-        spacing={4}
-        align='stretch'>
+  const decline = () =>{
+    toast({
+      title: "Request Declined",
+      status: "error",
+      duration: 1000,
+      isClosable: true,
+      position: "bottom",
+    });
+  }
+
+  const accept = () =>{
+    toast({
+      title: "Request Accepted",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+      position: "bottom",
+    });
+  }
+
+
+  return (
+    <VStack
+      divider={<StackDivider borderColor="gray.200" />}
+      spacing={4}
+      align="stretch"
+    >
       {" "}
       {forms.map((form) => (
         <Stack
@@ -71,10 +79,7 @@ const AdminDashboard = () => {
               {" "}
               <Moment format="YYYY/MM/DD">{form.createdAt}</Moment>
             </Text>
-            <Text fontWeight="semibold">
-              {" "}
-              STUDENT ID: {form.id}
-            </Text>
+            <Text fontWeight="semibold"> STUDENT ID: {form.id}</Text>
           </Stack>
 
           <Stack
@@ -86,19 +91,18 @@ const AdminDashboard = () => {
               {form.content}
             </Text>
             <Stack direction={{ base: "column", md: "row" }}>
-            <Button colorScheme='teal' variant='solid'>
-             Decline
-            </Button>
-            <Button colorScheme='teal' variant='outline'>
-             Accept
-            </Button>
+              <Button colorScheme="teal" variant="solid" onClick={decline}>
+                Decline
+              </Button>
+              <Button colorScheme="teal" variant="outline" onClick={accept}>
+                Accept
+              </Button>
             </Stack>
           </Stack>
         </Stack>
       ))}
     </VStack>
   );
-    
-}
+};
 
 export default AdminDashboard;
