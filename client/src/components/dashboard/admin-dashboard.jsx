@@ -1,10 +1,15 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { AuthState } from "../../context/AuthContext";
+import Moment from "react-moment";
+import { StackDivider, VStack,Stack, Text ,Button} from '@chakra-ui/react';
+import axios from "axios";
+
+
 
 const AdminDashboard = () => {
     const {user}=AuthState();
-    const [dta,setDta]=useState([]);
+    const [forms,setForms]=useState([]);
     const getDash = async () => {
         
         
@@ -19,27 +24,27 @@ const AdminDashboard = () => {
             .get(`/api/admin/Dashboard`, config)
           //console.log(user)
           //console.log(data);
-          setDta(data);
+          setForms(data);
         } catch (error) {
           console.log(error);
         }
       };
 
-    const decline=async()=>{
-        try {
-            const sender=
-            const config = {
-              headers: {
-                Authorization: `Bearer ${user.token}`,
-              },
-            };
-            const { data } = await axios
-              .post(`/api/admin/Dashboard/form-decline`, {},config)
+    // const decline=async()=>{
+    //     try {
+    //         const sender=
+    //         const config = {
+    //           headers: {
+    //             Authorization: `Bearer ${user.token}`,
+    //           },
+    //         };
+    //         const { data } = await axios
+    //           .post(`/api/admin/Dashboard/form-decline`, {},config)
            
-            setDta(data);
-          } 
+    //         setDta(data);
+    //       } 
 
-    }
+    // }
     
       useEffect(() =>{
         
@@ -48,10 +53,48 @@ const AdminDashboard = () => {
         
        },[getDash])
     return (
-        <div>
-        <h1>Admin Dashboard</h1>
-        </div>
-    );
+        <VStack divider={<StackDivider borderColor='gray.200' />}
+        spacing={4}
+        align='stretch'>
+      {" "}
+      {forms.map((form) => (
+        <Stack
+          p="4"
+          bg="#fff"
+          boxShadow="lg"
+          m="4"
+          borderRadius="sm"
+          key={user.id}
+        >
+          <Stack direction="row" bg="#fff" alignItems="center">
+            <Text fontWeight="semibold">
+              {" "}
+              <Moment format="YYYY/MM/DD">{form.createdAt}</Moment>
+            </Text>
+          </Stack>
+
+          <Stack
+            direction={{ base: "column", md: "row" }}
+            justifyContent="space-between"
+            bg="#fff"
+          >
+            <Text fontSize={{ base: "sm" }} textAlign={"left"} maxW={"4xl"}>
+              {form.content}
+            </Text>
+            <Stack direction={{ base: "column", md: "row" }}>
+            <Button colorScheme='teal' variant='solid'>
+             Decline
+            </Button>
+            <Button colorScheme='teal' variant='outline'>
+             Accept
+            </Button>
+            </Stack>
+          </Stack>
+        </Stack>
+      ))}
+    </VStack>
+  );
+    
 }
 
 export default AdminDashboard;

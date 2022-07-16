@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
-import { VStack,Stack, Text } from '@chakra-ui/react';
+import {StackDivider, VStack,Stack, Text } from '@chakra-ui/react';
 import { Badge } from "@chakra-ui/react";
 
 //import { AuthState } from "../../context/AuthContext";
@@ -43,7 +43,9 @@ const Formtab = () => {
    },[getForms])
   // var i =0;
   return (
-    <VStack>
+    <VStack divider={<StackDivider borderColor='gray.200' />}
+    spacing={4}
+    align='stretch'>
       {" "}
       {forms.map((form) => (
         <Stack
