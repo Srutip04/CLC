@@ -4,7 +4,7 @@ import { AuthState } from "../../context/AuthContext";
 
 const AdminDashboard = () => {
     const {user}=AuthState();
-    const [dta,setDta]=useState();
+    const [dta,setDta]=useState([]);
     const getDash = async () => {
         
         
