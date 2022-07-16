@@ -40,7 +40,7 @@ const Formtab = () => {
 
     getForms();
     
-   },[])
+   },[getForms])
   // var i =0;
   return (
     <VStack>
