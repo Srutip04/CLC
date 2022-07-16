@@ -74,7 +74,7 @@ const decline=asyncHandler(async(req,res)=>{
         console.log("Email sent success")
       }
     })
-    const form =await Form.find({createdAt,id}).deleteOne();
+   // const form =await Form.find({createdAt,id}).deleteOne();
   }catch(err){
     console.log(err)
     res.status(401)

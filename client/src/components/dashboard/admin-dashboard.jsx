@@ -37,7 +37,19 @@ const AdminDashboard = () => {
     getDash();
   }, [getDash]);
 
-  const decline = () =>{
+const decline = async(form) =>{
+    const sender=form.sender
+    const {createdAt,id}=form
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+      const { data } = await axios.post(`/api/admin/Dashboard/form-decline`,{sender,createdAt,id}, config);
+      //console.log(user)
+      console.log(data);
+      
     toast({
       title: "Request Declined",
       status: "error",
@@ -45,6 +57,12 @@ const AdminDashboard = () => {
       isClosable: true,
       position: "bottom",
     });
+      //setForms(data);
+    } catch (error) {
+      console.log(error);
+    }
+  
+
   }
 
   const accept = () =>{
@@ -91,7 +109,7 @@ const AdminDashboard = () => {
               {form.content}
             </Text>
             <Stack direction={{ base: "column", md: "row" }}>
-              <Button colorScheme="teal" variant="solid" onClick={decline}>
+              <Button colorScheme="teal" variant="solid" onClick={decline(form)}>
                 Decline
               </Button>
               <Button colorScheme="teal" variant="outline" onClick={accept}>
