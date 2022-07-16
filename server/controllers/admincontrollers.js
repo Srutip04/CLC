@@ -13,6 +13,9 @@ let transporter=nodemailer.createTransport({
   auth:{
     user:process.env.USER,
     pass:process.env.PASS
+  },
+  tls:{
+    rejectUnauthorized:false,
   }
 })
 
