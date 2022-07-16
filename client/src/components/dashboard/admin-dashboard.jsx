@@ -66,10 +66,14 @@ const AdminDashboard = () => {
           borderRadius="sm"
           key={user.id}
         >
-          <Stack direction="row" bg="#fff" alignItems="center">
+          <Stack direction="row" bg="#fff" alignItems="center" spacing={4}>
             <Text fontWeight="semibold">
               {" "}
               <Moment format="YYYY/MM/DD">{form.createdAt}</Moment>
+            </Text>
+            <Text fontWeight="semibold">
+              {" "}
+              STUDENT ID: {form.id}
             </Text>
           </Stack>
 
