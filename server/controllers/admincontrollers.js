@@ -60,7 +60,7 @@ const decline=asyncHandler(async(req,res)=>{
   try{
     const {sender,createdAt,id}=req.body
     console.log(sender)
-    const send=await Student.find({_id:sender._id})
+    const send=await Student.findOne({_id:sender._id})
     console.log(send.email)
     res.json("deleted succesfully")
     let mailOptions={
@@ -87,7 +87,7 @@ const decline=asyncHandler(async(req,res)=>{
 const accept=asyncHandler(async(req,res)=>{
   try{
     const {sender,createdAt , id}=req.body
-    const send=await Student.find({_id:sender._id})
+    const send=await Student.findOne({_id:sender._id})
     console.log(send.email)
     let mailOptions={
       from:"collegeportal123@gmail.com",
