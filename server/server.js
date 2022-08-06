@@ -24,7 +24,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json()); // to accept json data
 app.use(cors({
   origin: "*",
-  credentials: true
+  methods: ["GET", "POST"],
+  transports: ['websocket', 'polling'],
 }))
 
 

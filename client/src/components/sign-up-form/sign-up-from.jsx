@@ -69,7 +69,7 @@ export default function SignupCard() {
           "Content-type": "application/json",
         },
       };
-      const { data } = await axios.post("/api/register",
+      const { data } = await axios.post("https://backend-clc.herokuapp.com/api/register",
         {
           firstname,
           lastname,
