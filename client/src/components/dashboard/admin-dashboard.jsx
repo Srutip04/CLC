@@ -24,7 +24,7 @@ const AdminDashboard = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`/api/admin/Dashboard`, config);
+      const { data } = await axios.get(`https://backend-clc.herokuapp.com/api/admin/Dashboard`, config);
       //console.log(user)
       //console.log(data);
       setForms(data);
@@ -46,7 +46,7 @@ const decline = async(form) =>{
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post(`/api/admin/Dashboard/form-decline`,{sender,createdAt,id}, config);
+      const { data } = await axios.post(`https://backend-clc.herokuapp.com/api/admin/Dashboard/form-decline`,{sender,createdAt,id}, config);
       //console.log(user)
       console.log(data);
       
@@ -74,7 +74,7 @@ const decline = async(form) =>{
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post(`/api/admin/Dashboard/form-accept`,{sender,createdAt,id}, config);
+      const { data } = await axios.post(`https://backend-clc.herokuapp.com/api/admin/Dashboard/form-accept`,{sender,createdAt,id}, config);
       //console.log(user)
       console.log(data);
     toast({

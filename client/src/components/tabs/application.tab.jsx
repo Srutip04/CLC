@@ -53,7 +53,7 @@ const ApplicationForm = ({user}) =>{
           },
         };
         const { data } = await axios.post(
-          "/api/student/Dashboard",
+          "https://backend-clc.herokuapp.com/api/student/Dashboard",
           {
             email,
             id,

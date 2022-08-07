@@ -51,7 +51,7 @@ export default function SimpleCard() {
         },
       };
       const { data } = await axios.post(
-        "/api/student",
+        "https://backend-clc.herokuapp.com/api/student",
         {
           email,
           password,

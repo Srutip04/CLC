@@ -26,7 +26,7 @@ const Formtab = () => {
         },
       };
       const { data } = await axios
-        .get(`/api/student/Dashboard?sender=${sender}`, config)
+        .get(`https://backend-clc.herokuapp.com/api/student/Dashboard?sender=${sender}`, config)
       //console.log(user)
       //console.log(data);
       setForms(data);

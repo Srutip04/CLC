@@ -64,7 +64,7 @@ const decline=asyncHandler(async(req,res)=>{
     console.log(send.email)
     res.json("deleted succesfully")
     let mailOptions={
-      from:"collegeportal123@gmail.com",
+      from:process.env.USER,
       to:send.email,
       subject:"CLC request",
       text:"Declined"
@@ -90,7 +90,7 @@ const accept=asyncHandler(async(req,res)=>{
     const send=await Student.findOne({_id:sender._id})
     console.log(send.email)
     let mailOptions={
-      from:"collegeportal123@gmail.com",
+      from:process.env.USER,
       to:send.email,
       subject:"CLC request",
       text:"Accepted"
