@@ -23,10 +23,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.json()); // to accept json data
 app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST"],
-  transports: ['websocket', 'polling'],
-}))
+  origin:'*',
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200
+ 
+  
+ }))
 
 
 const url=process.env.DB_URL
