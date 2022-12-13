@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
 import {StackDivider, VStack,Stack, Text } from '@chakra-ui/react';
@@ -10,9 +11,9 @@ const Formtab = () => {
 
   const [forms, setForms] = useState([]);
   
- 
-
-  const getForms = async () => {
+  
+  
+  const getForms = async (fields) => {
     //console.log(user)
     const sender=user._id
     
@@ -20,13 +21,16 @@ const Formtab = () => {
 
     
     try {
+      const mediaid='5461332850598784'
+
+      const access_token='IGQVJVeVctQk5fTjBGS1FqNE5BdXpCSms3clp6VGFvZA3lsYzFmUXRDemYyNzZAPemRxZAE9QdU1pSTBRUHo2MHlDRVd4RkNoY3hUT3o4RGlqY0RjVmlfd0FfUXNSMnMyT0w2MnFkUURuSldaSk9fbW0tWgZDZD'
       const config = {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
       };
       const { data } = await axios
-        .get(`https://backend-clc.herokuapp.com/api/student/Dashboard?sender=${sender}`, config)
+        .get(`https://graph.instagram.com/${mediaid}?fields=${fields}&access_token=${access_token}`, config)
       //console.log(user)
       //console.log(data);
       setForms(data);
