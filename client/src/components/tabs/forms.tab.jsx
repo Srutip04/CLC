@@ -21,9 +21,9 @@ const Formtab = () => {
 
     
     try {
-      const mediaid='5461332850598784'
+      const mediaid= process.env.mediaid;
 
-      const access_token='IGQVJVeVctQk5fTjBGS1FqNE5BdXpCSms3clp6VGFvZA3lsYzFmUXRDemYyNzZAPemRxZAE9QdU1pSTBRUHo2MHlDRVd4RkNoY3hUT3o4RGlqY0RjVmlfd0FfUXNSMnMyT0w2MnFkUURuSldaSk9fbW0tWgZDZD'
+      const access_token=process.env.access_token;
       const config = {
         headers: {
           Authorization: `Bearer ${user.token}`,
