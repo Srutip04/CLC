@@ -39,7 +39,7 @@ import { useNavigate } from "react-router-dom";
         return;
       }
       
-      console.log( email, password);
+      
       try {
         const config = {
           headers: {
