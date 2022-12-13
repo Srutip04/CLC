@@ -47,7 +47,7 @@ import { useNavigate } from "react-router-dom";
           },
         };
         const { data } = await axios.post(
-          "https://backend-clc.herokuapp.com/api/admin",
+          "https://clcbackend-production.up.railway.app/api/admin",
           {
            
             email,
