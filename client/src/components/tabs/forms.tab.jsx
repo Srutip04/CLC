@@ -1,55 +1,47 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
-import {StackDivider, VStack,Stack, Text } from '@chakra-ui/react';
+import { StackDivider, VStack, Stack, Text } from "@chakra-ui/react";
 import { Badge } from "@chakra-ui/react";
 
 //import { AuthState } from "../../context/AuthContext";
 import axios from "axios";
 const Formtab = () => {
-  const user=JSON.parse(localStorage.getItem("userInfo"))
+  const user = JSON.parse(localStorage.getItem("userInfo"));
 
   const [forms, setForms] = useState([]);
-  
-  
-  
+
   const getForms = async (fields) => {
     //console.log(user)
-    const sender=user._id
-    
-   
+    const sender = user._id;
 
-    
     try {
-      const mediaid= process.env.mediaid;
-
-      const access_token=process.env.access_token;
       const config = {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios
-        .get(`https://graph.instagram.com/${mediaid}?fields=${fields}&access_token=${access_token}`, config)
-      //console.log(user)
-      //console.log(data);
+      const { data } = await axios.get(
+        `https://clcbackend-production.up.railway.app/api/student/Dashboard?${sender}`,
+        config
+      );
+
       setForms(data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  useEffect(() =>{
-    
-
+  useEffect(() => {
     getForms();
-    
-   },[getForms])
+  }, [getForms]);
   // var i =0;
   return (
-    <VStack divider={<StackDivider borderColor='gray.200' />}
-    spacing={4}
-    align='stretch'>
+    <VStack
+      divider={<StackDivider borderColor="gray.200" />}
+      spacing={4}
+      align="stretch"
+    >
       {" "}
       {forms.map((form) => (
         <Stack
